@@ -92,9 +92,9 @@ namespace CounterHooker
                 input.Type = 0;
                 input.ui.Mouse.Flags = MOUSEEVENTF_MOVE;
                 input.ui.Mouse.Data = 0;
-                input.ui.Mouse.X = 5;
-                input.ui.Mouse.Y = 5;
-                input.ui.Mouse.Time = 1000;
+                input.ui.Mouse.X = 1;
+                input.ui.Mouse.Y = 1;
+                input.ui.Mouse.Time = 0;
                 input.ui.Mouse.ExtraInfo = Win32API.GetMessageExtraInfo();
                 Win32API.SendInput(1, ref input, Marshal.SizeOf(input));
 
@@ -104,9 +104,9 @@ namespace CounterHooker
                 input.Type = 0;
                 input.ui.Mouse.Flags = MOUSEEVENTF_MOVE;
                 input.ui.Mouse.Data = 0;
-                input.ui.Mouse.X = -5;
-                input.ui.Mouse.Y = -5;
-                input.ui.Mouse.Time = 1000;
+                input.ui.Mouse.X = -1;
+                input.ui.Mouse.Y = -1;
+                input.ui.Mouse.Time = 0;
                 input.ui.Mouse.ExtraInfo = Win32API.GetMessageExtraInfo();
                 Win32API.SendInput(1, ref input, Marshal.SizeOf(input));
 
@@ -120,7 +120,6 @@ namespace CounterHooker
     }
     public class Win32API
     {
-
         [StructLayout(LayoutKind.Sequential)]
         public struct MouseInput
         {
@@ -155,6 +154,7 @@ namespace CounterHooker
             [FieldOffset(0)]
             public HardwareInput Hardware;
         }
+        
         [DllImport("user32.dll")]
         public static extern uint keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
 
@@ -163,8 +163,7 @@ namespace CounterHooker
 
         [DllImport("user32.dll", SetLastError = true)]
         public extern static int SendInput(int nInputs, ref Input pInputs, int cbsize);
-
-
+        
         [DllImport("user32.dll", SetLastError = true)]
         public extern static IntPtr GetMessageExtraInfo();
 

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CounterHooker")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Hewlett-Packard Company")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("CounterHooker")]
-[assembly: AssemblyCopyright("Copyright © Hewlett-Packard Company 2020")]
+[assembly: AssemblyCopyright("Copyright © 2020 Masato Hanayama")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
