@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace CounterHooker
 {
@@ -23,6 +24,9 @@ namespace CounterHooker
             this.statusTextBox.BackColor = Color.Red;
             this.statusTextBox.Text = "Not sending...";
             this.startStopButton.Text = "START";
+            this.notifyIcon.Icon = Properties.Resources.counterHooker;
+            this.notifyIcon.Text = "CounterHooker";
+            this.notifyIcon.Visible = false;
         }
 
 
@@ -116,6 +120,32 @@ namespace CounterHooker
             }
 
             this.UpdateStatus();
+        }
+
+        private void mainForm_ClientSizeChanged(object sender, EventArgs e)
+        {
+            if(this.WindowState == System.Windows.Forms.FormWindowState.Minimized)
+            {
+                this.notifyIcon.Icon = this.runnning ? Properties.Resources.counterHookerGo : Properties.Resources.counterHookerStop;
+                this.notifyIcon.Text = "CounterHooker\r\n";
+                this.notifyIcon.Text += this.runnning ? "Sending..." : "Not Sending...";
+                this.notifyIcon.Visible = true;
+                this.Visible = false;
+                this.ShowInTaskbar = false;
+                this.notifyIcon.BalloonTipTitle = "CounterHooker";
+                this.notifyIcon.BalloonTipText = "タスクトレーに格納されます。\r\nアプリケーションはバックグラウンドで実行中です。";
+                this.notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+                this.notifyIcon.ShowBalloonTip(3000);
+
+            }
+        }
+
+        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            this.Visible = true;
+            this.ShowInTaskbar = true;
+            this.notifyIcon.Visible = false;
+            this.Activate();
         }
     }
     public class Win32API
