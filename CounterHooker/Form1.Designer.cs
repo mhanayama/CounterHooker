@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.statusTextBox = new System.Windows.Forms.TextBox();
             this.startStopButton = new System.Windows.Forms.Button();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // statusTextBox
@@ -54,6 +56,12 @@
             this.startStopButton.UseVisualStyleBackColor = true;
             this.startStopButton.Click += new System.EventHandler(this.startStopButton_Click);
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Text = "CounterHooker";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -66,6 +74,7 @@
             this.MaximizeBox = false;
             this.Name = "mainForm";
             this.Text = "CounterHooker";
+            this.ClientSizeChanged += new System.EventHandler(this.mainForm_ClientSizeChanged);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -74,6 +83,7 @@
         #endregion
         private System.Windows.Forms.TextBox statusTextBox;
         private System.Windows.Forms.Button startStopButton;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
 
